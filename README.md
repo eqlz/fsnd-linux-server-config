@@ -45,11 +45,15 @@ Restart SSH server: `sudo service ssh restart`.
 Connect to server: `ssh <username>@<lightsail_public_ip> -i <path_to_your_private_key> -p 2200`.
 
 ## Give `Grader` Access
-Create user `grader`: `sudo adduser grader`
+__Create user `grader`__
 
-Give `grader` permission to `sudo`: `sudo nano /etc/sudoers.d/grader`.  Then write `grader ALL=(ALL) NOPASSWD:ALL` into the file.
+`sudo adduser grader`
 
-Set up SSH key pair for `grader`:
+__Give `grader` permission to `sudo`__
+
+`sudo nano /etc/sudoers.d/grader`.  Then write `grader ALL=(ALL) NOPASSWD:ALL` into the file.
+
+__Set up SSH key pair for `grader`__
 
 As root user, on server, create a folder: `mkdir /home/grader/.ssh`
 
@@ -92,6 +96,20 @@ PostgreSQL official documents on creating database user and database iteself:
 
 https://www.postgresql.org/docs/current/static/app-createuser.html
 https://www.postgresql.org/docs/current/static/app-createdb.html
+
+__Install Flask, Sqlalchemy, Python Libraries__
+```
+sudo apt-get install python-psycopg2 
+sudo apt-get install python-flask
+sudo apt-get install python-sqlalchemy 
+sudo apt-get install python-pip
+
+sudo pip install oauth2client
+sudo pip install requests
+sudo pip install httplib2
+```
+
+
 
 
 
