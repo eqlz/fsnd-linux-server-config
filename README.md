@@ -115,7 +115,7 @@ sudo pip install httplib2
 
 `sudo apt-get install git`
 
-### Clone Catalop Repository from Github
+### Clone Catalog Repository from Github
 
 ```
 cd /var/www/
@@ -127,7 +127,7 @@ sudo -u www-data git clone https://github.com/eqlz/fsnd-project-mgt-app.git full
 Make `.git` file inaccessible: `sudo nano .htaccess`, add a line of `RedirectMatch 404 /\.git` into the file.  Then save it.
 
 ### Set Up Directory Structure
-You directory structure shoul look like this, this is what my directory looks like on my server:
+Set your directory structure look like this, this is what my directory looks like on my server:
 ```
 /var/www/fullstack-nanodegree-vm/
 --------------------------------catalog
@@ -147,6 +147,36 @@ Folder structure:
 4. It's necessary to have two `catalog` folders, and are structured in this way.
 
 Helpful resource: https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
+
+### Create `catalog.wsgi` File
+Location: see directory structure above, under the first `catalog` file
+
+Content:
+```
+#!/usr/bin/python
+import sys
+import logging
+logging.basicConfig(stream=sys.stderr)
+sys.path.insert(0, "/var/www/fullstack-nanodegree-vm/catalog/") # pay attention to the path, yours may be different from mine.
+
+from catalog import app as application
+
+application.secret_key = 'YOUR_SECRET_KEY'
+```
+
+
+### `__init__.py`
+From the folder structure above, you'll notice there is an `__init__.py` file under the second `catalog` folder.
+This `__init__.py` file is the python file that contains all your backend logic.
+
+You have alreay created such a file while finishing catalog project.  It's just your file's name may not be `__init__.py`.  Mine is
+`views.py`, you can see my `views.py` here: https://github.com/eqlz/fsnd-project-mgt-app/blob/master/views.py
+
+Now, change `views.py` to `__init__.py`: `sudo mv views.py __init__.py`.
+
+### Edit `__init__.py`
+
+
 
 
 
