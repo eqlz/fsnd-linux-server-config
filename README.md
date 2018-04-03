@@ -165,7 +165,7 @@ application.secret_key = 'YOUR_SECRET_KEY'
 ```
 
 
-### `__init__.py`
+### Have `__init__.py` file
 From the folder structure above, you'll notice there is an `__init__.py` file under the second `catalog` folder.
 This `__init__.py` file is the python file that contains all your backend logic.
 
@@ -174,7 +174,15 @@ You have alreay created such a file while finishing catalog project.  It's just 
 
 Now, change `views.py` to `__init__.py`: `sudo mv views.py __init__.py`.
 
-### Edit `__init__.py`
+### Edit `__init__.py` file
+Change `engine = create_engine('sqlite:///projectmgtwithuser.db')` to
+
+`engine = create_engine('postgresql://catalog:<password you set up when creating postgresql user catalog>@localhost/catalog')`
+
+Change `CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_id']`'s path to the abosulte path
+
+`CLIENT_ID = json.loads(open('/var/www/fullstack-nanodegree-vm/catalog/catalog/client_secrets.json', 'r').read())['web']['client_id']`
+
 
 
 
