@@ -8,13 +8,14 @@ SSH port: `2200`
 URL: `http://project.emilyzhang.work`
 
 ## Secure the server
-1. Update all currently installed packages
+Update all currently installed packages
 
 `apt-get update`
 
 `apt-get upgrade`
 
-2. Configure the Uncomplicated Firewall
+
+Configure the Uncomplicated Firewall
 
 Check the status of the firewall, use: `sudo ufw status`
 
@@ -30,7 +31,8 @@ Check the rules that have been added before enabling the firewall use: `sudo ufw
 
 Enable the firewall: `sudo ufw enable`
 
-3. Change the SSH port from 22 to 2200
+
+Change the SSH port from 22 to 2200
 
 `sudo nano /etc/ssh/sshd_config`, change `Port 22` to `Port 2200`
 
