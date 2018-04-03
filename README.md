@@ -38,8 +38,35 @@ First, log into Amazon Lightsail homepage, click your instance.  Then find "Netw
 
 Lightsail accepts port 22 and 80 by default.  You need to set up Lightsail to accept 2200 connection.
 
-Now change SSH port 22 to 2200:
+Now change SSH port 22 to 2200: `sudo nano /etc/ssh/sshd_config`, change `Port 22` to `Port 2200`.
 
-`sudo nano /etc/ssh/sshd_config`, change `Port 22` to `Port 2200`
+Restart SSH server: `sudo service ssh restart`.
+
+Connect to server: `ssh <username>@<lightsail_public_ip> -i <path_to_your_private_key> -p 2200`.
 
 ## Give `Grader` Access
+Create user `grader`: `sudo adduser grader`
+
+Give `grader` permission to `sudo`: `sudo nano /etc/sudoers.d/grader`.  Then write `grader ALL=(ALL) NOPASSWD:ALL` into the file.
+
+Create SSH key pair for `grader`:
+
+As root user, on server, create a folder: `mkdir /home/grader/.ssh`
+
+On your local machine, generate a key pair: `ssh-keygen`
+
+Install publick key on server, as user `grader`: 
+
+`touch .ssh/authorized_keys`
+
+`nano .ssh/authorized_keys`
+
+Read out the content of public key file on your local machine, copy and then paste to `.ssh/authorized_keys` file on your server.  Then
+save it.
+
+Now log into the server as grader: `ssh grader@<lightsail_public_ip> -i <path_to_your_private_key> -p 2200`.
+
+On server, as grader, force key based authentication: `sudo nano /etc/ssh/sshd_config`, change `PasswordAuthentication` to `no`.  Then save it.
+
+On server, as grader, then modify file permission: `chmod 700 .ssh`, `chmod 600 .ssh/authorized_keys`.
+
