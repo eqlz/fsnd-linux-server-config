@@ -59,7 +59,7 @@ As root user, on server, create a folder: `mkdir /home/grader/.ssh`
 
 On your local machine, generate a key pair: `ssh-keygen`
 
-Install publick key on server, as user `grader`: 
+Install public key on server, as user `grader`: 
 
 `touch .ssh/authorized_keys`
 
@@ -257,6 +257,12 @@ Enable the virtual host just created: `sudo a2ensite catalog.conf`
 
 To make these changes live restart Apache2: `sudo service apache2 restart`
 
+## Run Catalog App
+`python __init__.py`
 
+`sudo service apache2 restart`
 
+## Helpful resource from other Udacity students
+https://github.com/otsop110/fullstack-nanodegree-linux-server-configuration
+https://github.com/SteveWooding/fullstack-nanodegree-linux-server-config
 
