@@ -8,14 +8,14 @@ SSH port: `2200`
 URL: `http://project.emilyzhang.work`
 
 ## Secure the server
-__Update all currently installed packages__
+### Update all currently installed packages
 
 `apt-get update`
 
 `apt-get upgrade`
 
 
-__Configure the Uncomplicated Firewall__
+### Configure the Uncomplicated Firewall
 
 Check the status of the firewall: `sudo ufw status`
 
@@ -32,7 +32,7 @@ Check the rules that have been added before enabling the firewall use: `sudo ufw
 Enable the firewall: `sudo ufw enable`
 
 
-__Change the SSH port from 22 to 2200__
+### Change the SSH port from 22 to 2200
 
 First, log into Amazon Lightsail homepage, click your instance.  Then find "Networking", under "Networking", find "Firewall".  Under "Firewall", click "+ Add another": make sure the Port range is 2200.
 
@@ -45,15 +45,15 @@ Restart SSH server: `sudo service ssh restart`.
 Connect to server: `ssh <username>@<lightsail_public_ip> -i <path_to_your_private_key> -p 2200`.
 
 ## Give `Grader` Access
-__Create user `grader`__
+### Create user `grader`
 
 `sudo adduser grader`
 
-__Give `grader` permission to `sudo`__
+### Give `grader` permission to `sudo`
 
 `sudo nano /etc/sudoers.d/grader`.  Then write `grader ALL=(ALL) NOPASSWD:ALL` into the file.
 
-__Set up SSH key pair for `grader`__
+### Set up SSH key pair for `grader`
 
 As root user, on server, create a folder: `mkdir /home/grader/.ssh`
 
@@ -79,14 +79,14 @@ Helpful resource: https://aws.amazon.com/premiumsupport/knowledge-center/new-use
 ## Prepare to Deploy
 Configure local timezone to UTC: `sudo timedatectl set-timezone UTC`
 
-__Install Apache__
+### Install Apache
 
 Install Apache: `sudo apt-get install apache2`
 
 Configure Apache to serve a Python mod_wsgi application: `sudo apt-get install libapache2-mod-wsgi`.  If you're coding in Python3, then:
 `sudo apt-get install libapache2-mod-wsgi-py3`
 
-__Install and Configure Postgresql__
+### Install and Configure Postgresql
 
 Install Postgresql: `sudo apt-get install postgresql postgresql-contrib`.
 
@@ -99,7 +99,7 @@ PostgreSQL official documents on creating database user and database iteself:
 https://www.postgresql.org/docs/current/static/app-createuser.html
 https://www.postgresql.org/docs/current/static/app-createdb.html
 
-__Install Flask, Sqlalchemy, Python Libraries__
+### Install Flask, Sqlalchemy, Python Libraries
 ```
 sudo apt-get install python-psycopg2 
 sudo apt-get install python-flask
@@ -111,11 +111,11 @@ sudo pip install requests
 sudo pip install httplib2
 ```
 
-__Install Git__
+### Install Git
 
 `sudo apt-get install git`
 
-__Clone Catalop Repository from Github__
+### Clone Catalop Repository from Github
 
 ```
 cd /var/www/
@@ -125,6 +125,28 @@ sudo -u www-data git clone https://github.com/eqlz/fsnd-project-mgt-app.git full
 ```
 
 Make `.git` file inaccessible: `sudo nano .htaccess`, add a line of `RedirectMatch 404 /\.git` into the file.  Then save it.
+
+### Set Up Directory Structure
+You directory structure shoul look like this, this is what my directory looks like on my server:
+```
+/var/www/fullstack-nanodegree-vm/
+--------------------------------catalog
+---------------------------------------catalog
+----------------------------------------------__init__.py
+----------------------------------------------models.py
+----------------------------------------------static
+----------------------------------------------templates
+----------------------------------------------client_secrets.json
+---------------------------------------catalog.wsgi
+```
+
+Folder structure:
+1. Under `fullstack-nanodegree-vm`, there is only one item, folder `catalog`.
+2. Under first `catalog` folder, there are two items, folder `catalog`, file `catalog.wsgi`.
+3. Under second `catalog` folder, put all the catalog project files there.
+4. It's necessary to have two `catalog` folders, and are structured in this way.
+
+Helpful resource: https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
 
 
 
