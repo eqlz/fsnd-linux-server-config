@@ -49,7 +49,7 @@ Create user `grader`: `sudo adduser grader`
 
 Give `grader` permission to `sudo`: `sudo nano /etc/sudoers.d/grader`.  Then write `grader ALL=(ALL) NOPASSWD:ALL` into the file.
 
-Create SSH key pair for `grader`:
+Set up SSH key pair for `grader`:
 
 As root user, on server, create a folder: `mkdir /home/grader/.ssh`
 
@@ -69,4 +69,30 @@ Now log into the server as grader: `ssh grader@<lightsail_public_ip> -i <path_to
 On server, as grader, force key based authentication: `sudo nano /etc/ssh/sshd_config`, change `PasswordAuthentication` to `no`.  Then save it.
 
 On server, as grader, then modify file permission: `chmod 700 .ssh`, `chmod 600 .ssh/authorized_keys`.
+
+## Prepare to Deploy
+Configure local timezone to UTC: `sudo timedatectl set-timezone UTC`
+
+__Install Apache__
+
+Install Apache: `sudo apt-get install apache2`
+
+Configure Apache to serve a Python mod_wsgi application: `sudo apt-get install libapache2-mod-wsgi`.  If you're coding in Python3, then:
+`sudo apt-get install libapache2-mod-wsgi-py3`
+
+__Install and Configure Postgresql__
+
+Install Postgresql: `sudo apt-get install postgresql postgresql-contrib`.
+
+Create a PostgreSQL user `catalog`: `sudo -u postgres createuser -P catalog`.  You will be prompted for a password.
+
+Create an database `catalog` whose owner is user `catalog`: `sudo -u postgres createdb -O catalog catalog`.
+
+PostgreSQL official documents on creating database user and database iteself:
+
+https://www.postgresql.org/docs/current/static/app-createuser.html
+https://www.postgresql.org/docs/current/static/app-createdb.html
+
+
+
 
