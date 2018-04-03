@@ -151,6 +151,8 @@ Helpful resource: https://www.digitalocean.com/community/tutorials/how-to-deploy
 ### Create `catalog.wsgi` File
 Location: see directory structure above, under the first `catalog` file
 
+Command: `sudo nano catalog.wsgi`
+
 Content:
 ```
 #!/usr/bin/python
@@ -175,13 +177,15 @@ You have alreay created such a file while finishing catalog project.  It's just 
 Now, change `views.py` to `__init__.py`: `sudo mv views.py __init__.py`.
 
 ### Edit `__init__.py` file
+`sudo nano __init__.py`
+
 Change `engine = create_engine('sqlite:///projectmgtwithuser.db')` to
 
 ```
 engine = create_engine('postgresql://catalog:<password you set up when creating postgresql user catalog>@localhost/catalog')
 ```
 
-Change `CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_id']`'s path to the abosulte path
+Change `CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_id']`'s path to the __abosulte path__
 
 ```
 CLIENT_ID = json.loads(open('/var/www/fullstack-nanodegree-vm/catalog/catalog/client_secrets.json', 'r').read())['web']['client_id']
@@ -194,11 +198,26 @@ In my `models.py` file, change `engine = create_engine('sqlite:///projectmgtwith
 engine = create_engine('postgresql://catalog:<password you set up when creating postgresql user catalog>@localhost/catalog')
 ```
 
+### Update Google Oauth `client_secrets.json` & Google API Credentials
+In `client_secrets.json` file, update 
+
+`"redirect_uris":["http://project.emilyzhang.work"]`, 
+
+`"javascript_origins":["http://project.emilyzhang.work"]`.
 
 
+In Google developer console, update your credentials:
+
+Authorized JavaScript origins: `http://project.emilyzhang.work`,
+
+Authorized redirect URIs: `http://project.emilyzhang.work`.
 
 
+Error: Permission denied to generate login hint for target domain
 
+Amazon Lightsail's public IP doesn't work for me, see the reason here: https://stackoverflow.com/questions/36020374/google-permission-denied-to-generate-login-hint-for-target-domain-not-on-localh
+
+## Configure and Enable Apache2 to serve your app
 
 
 
