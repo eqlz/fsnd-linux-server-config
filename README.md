@@ -109,6 +109,10 @@ sudo pip install requests
 sudo pip install httplib2
 ```
 
+__Install Git__
+`sudo apt-get install git`
+
+
 
 
 
