@@ -217,7 +217,45 @@ Error: Permission denied to generate login hint for target domain
 
 Amazon Lightsail's public IP doesn't work for me, see the reason here: https://stackoverflow.com/questions/36020374/google-permission-denied-to-generate-login-hint-for-target-domain-not-on-localh
 
-## Configure and Enable Apache2 to serve your app
+## Configure and Enable Apache2
+To server catalog app via Apache web server, create a virtual host configuration file first
+
+`sudo nano /etc/apache2/sites-available/catalog.conf`
+
+`catalog.conf`'s content, pay attention to the path, mine may be different from yours:
+
+```
+<VirtualHost *:80>
+                ServerName 18.219.164.45
+
+                ServerAdmin admin@18.219.164.45
+
+                WSGIDaemonProcess catalog user=www-data group=www-data threads=5
+                WSGIProcessGroup catalog
+                WSGIApplicationGroup %{GLOBAL}
+
+                WSGIScriptAlias / /var/www/fullstack-nanodegree-vm/catalog/catalog.wsgi
+
+                <Directory /var/www/fullstack-nanodegree-vm/catalog/catalog/>
+                Require all granted
+                </Directory>
+
+                Alias /static /var/www/fullstack-nanodegree-vm/vagrant/catalog/catalog/static
+                <Directory /var/www/fullstack-nanodegree-vm/catalog/catalog/static/>
+                Require all granted
+                </Directory>
+
+                ErrorLog ${APACHE_LOG_DIR}/error.log
+                LogLevel warn
+                CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+Disable the default virtual host: `sudo a2dissite 000-default.conf`
+
+Enable the virtual host just created: `sudo a2ensite catalog.conf`
+
+To make these changes live restart Apache2: `sudo service apache2 restart`
 
 
 
