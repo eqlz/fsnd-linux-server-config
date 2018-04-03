@@ -34,9 +34,7 @@ Enable the firewall: `sudo ufw enable`
 
 ### Change the SSH port from 22 to 2200
 
-First, log into Amazon Lightsail homepage, click your instance.  Then find "Networking", under "Networking", find "Firewall".  Under "Firewall", click "+ Add another": make sure the Port range is 2200.
-
-Lightsail accepts port 22 and 80 by default.  You need to set up Lightsail to accept 2200 connection.
+Lightsail accepts port 22 and 80 by default.  You need to set up Lightsail to accept 2200 connection.  Log into Amazon Lightsail homepage, click your instance.  Then find "Networking", under "Networking", find "Firewall".  Under "Firewall", click "+ Add another": make sure the Port range is 2200.
 
 Now change SSH port 22 to 2200: `sudo nano /etc/ssh/sshd_config`, change `Port 22` to `Port 2200`.
 
@@ -94,8 +92,7 @@ Create a PostgreSQL user `catalog`: `sudo -u postgres createuser -P catalog`.  Y
 
 Create an database `catalog` whose owner is user `catalog`: `sudo -u postgres createdb -O catalog catalog`.
 
-PostgreSQL official documents on creating database user and database iteself:
-
+Hepful resource: PostgreSQL official documents on creating database user and database iteself,
 https://www.postgresql.org/docs/current/static/app-createuser.html
 https://www.postgresql.org/docs/current/static/app-createdb.html
 
