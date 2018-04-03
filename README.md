@@ -74,6 +74,8 @@ On server, as grader, force key based authentication: `sudo nano /etc/ssh/sshd_c
 
 On server, as grader, then modify file permission: `chmod 700 .ssh`, `chmod 600 .ssh/authorized_keys`.
 
+Helpful resource: https://aws.amazon.com/premiumsupport/knowledge-center/new-user-accounts-linux-instance/
+
 ## Prepare to Deploy
 Configure local timezone to UTC: `sudo timedatectl set-timezone UTC`
 
@@ -110,8 +112,19 @@ sudo pip install httplib2
 ```
 
 __Install Git__
+
 `sudo apt-get install git`
 
+__Clone Catalop Repository from Github__
+
+```
+cd /var/www/
+sudo mkdir fullstack-nanodegree-vm
+sudo chown www-data:www-data fullstack-nanodegree-vm/
+sudo -u www-data git clone https://github.com/eqlz/fsnd-project-mgt-app.git fullstack-nanodegree-vm
+```
+
+Make `.git` file inaccessible: `sudo nano .htaccess`, add a line of `RedirectMatch 404 /\.git` into the file.  Then save it.
 
 
 
