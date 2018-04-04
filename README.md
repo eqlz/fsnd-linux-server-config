@@ -82,7 +82,7 @@ On server, as grader, force key based authentication: `sudo nano /etc/ssh/sshd_c
 
 On server, as grader, then modify file permission: `chmod 700 .ssh`, `chmod 600 .ssh/authorized_keys`.
 
-Helpful resource: https://aws.amazon.com/premiumsupport/knowledge-center/new-user-accounts-linux-instance/
+Helpful resource: [Add new user in Linux instance](https://aws.amazon.com/premiumsupport/knowledge-center/new-user-accounts-linux-instance/)
 
 ## Prepare to Deploy
 Configure local timezone to UTC: `sudo timedatectl set-timezone UTC`
@@ -102,9 +102,7 @@ Create a PostgreSQL user `catalog`: `sudo -u postgres createuser -P catalog`.  Y
 
 Create an database `catalog` whose owner is user `catalog`: `sudo -u postgres createdb -O catalog catalog`.
 
-Hepful resource: PostgreSQL official documents on creating database user and database iteself,
-https://www.postgresql.org/docs/current/static/app-createuser.html
-https://www.postgresql.org/docs/current/static/app-createdb.html
+Hepful resource: PostgreSQL official documents [Create database user](https://www.postgresql.org/docs/current/static/app-createuser.html), [Create database](https://www.postgresql.org/docs/current/static/app-createdb.html)
 
 ### Install Flask, Sqlalchemy, Python Libraries
 ```
@@ -153,7 +151,7 @@ Folder structure:
 3. Under second `catalog` folder, put all the catalog project files there.
 4. It's necessary to have two `catalog` folders, and are structured in this way.
 
-Helpful resource: https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
+Helpful resource: [How to deloy a Flask application on an Ubuntu VSP](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps)
 
 ### Create `catalog.wsgi` File
 Location: see directory structure above, under the first `catalog` file
@@ -179,7 +177,7 @@ From the folder structure above, you'll notice there is an `__init__.py` file un
 This `__init__.py` file is the python file that contains all your backend logic.
 
 You have alreay created such a file while finishing catalog project.  It's just your file's name may not be `__init__.py`.  Mine is
-`views.py`, you can see my `views.py` here: https://github.com/eqlz/fsnd-project-mgt-app/blob/master/views.py
+`views.py`, you can see my `views.py` [here](https://github.com/eqlz/fsnd-project-mgt-app/blob/master/views.py)
 
 Now, change `views.py` to `__init__.py`: `sudo mv views.py __init__.py`.
 
@@ -222,7 +220,7 @@ Authorized redirect URIs: `http://project.emilyzhang.work`.
 
 Error: Permission denied to generate login hint for target domain
 
-Amazon Lightsail's public IP doesn't work for me, see the reason here: https://stackoverflow.com/questions/36020374/google-permission-denied-to-generate-login-hint-for-target-domain-not-on-localh
+Amazon Lightsail's public IP doesn't work for me, see the reason [here](https://stackoverflow.com/questions/36020374/google-permission-denied-to-generate-login-hint-for-target-domain-not-on-localh)
 
 ## Configure and Enable Apache2
 To server catalog app via Apache web server, create a virtual host configuration file first
@@ -270,6 +268,7 @@ To make these changes live restart Apache2: `sudo service apache2 restart`
 `sudo service apache2 restart`
 
 ## Helpful resource from other Udacity students
-https://github.com/otsop110/fullstack-nanodegree-linux-server-configuration
-https://github.com/SteveWooding/fullstack-nanodegree-linux-server-config
+[Tarja M](https://github.com/otsop110/fullstack-nanodegree-linux-server-configuration)
+
+[Steve Wooding](https://github.com/SteveWooding/fullstack-nanodegree-linux-server-config)
 
