@@ -14,6 +14,14 @@ URL: `http://project.emilyzhang.work`
 
 `apt-get upgrade`
 
+### Disable logging in as `root` remotely
+`cd` to `/etc/ssh`, `sudo nano sshd_config`
+
+Find the line `PermitRootLogin`, change from `prohibit-password` to `no`.
+
+Restart ssh server: `sudo service ssh restart`
+
+Connect to server: `ssh <username>@<lightsail_public_ip> -i <path_to_your_private_key> -p 2200`.
 
 ### Configure the Uncomplicated Firewall
 
