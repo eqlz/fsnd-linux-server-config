@@ -50,6 +50,8 @@ Restart SSH server: `sudo service ssh restart`.
 
 Connect to server: `ssh <username>@<lightsail_public_ip> -i <path_to_your_private_key> -p 2200`.
 
+Diable SSH port 22: `sudo ufw deny 22`.
+
 ## Give `Grader` Access
 ### Create user `grader`
 
