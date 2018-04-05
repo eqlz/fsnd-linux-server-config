@@ -14,6 +14,8 @@ URL: `http://project.emilyzhang.work`
 
 `apt-get upgrade`
 
+To automatically update, use [_unattended-upgrades_](https://help.ubuntu.com/lts/serverguide/automatic-updates.html) package 
+
 ### Disable logging in as `root` remotely
 `cd` to `/etc/ssh`, `sudo nano sshd_config`
 
