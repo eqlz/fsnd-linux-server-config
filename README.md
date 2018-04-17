@@ -1,4 +1,5 @@
 # Linux Server Configuration
+This Udacity project is to configure a Linux server in a Ubuntu instance on AWS Lightsail.  And then to deploy the web app that was built [here](https://github.com/eqlz/fsnd-project-mgt-app).
 
 ## Connect to server
 IP address: ~~`18.219.3.185`~~ `18.188.54.6`
