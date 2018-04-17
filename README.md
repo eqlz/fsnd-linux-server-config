@@ -1,7 +1,7 @@
 # Linux Server Configuration
 
 ## Connect to server
-IP address: `18.219.3.185`
+IP address: ~~`18.219.3.185`~~ `18.188.54.6`
 
 SSH port: `2200`
 
